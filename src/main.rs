@@ -14,7 +14,7 @@ fn main() {
         DVec3::new(30., 0., 0.),
         DVec3::new(0., 40., 0.),
     ];
-    spawn_points = center_coorinates(spawn_points);
+    spawn_points = center_coordinates(spawn_points);
     App::new()
         .add_plugins(
             DefaultPlugins
@@ -38,7 +38,9 @@ fn main() {
                         position: spawn_points[0],
                         velocity: DVec3::new(0., 0., 0.),
                         color: Some(LinearRgba::rgb(130.99, 50.32, 20.0)),
-                        trail_color: Some(LinearRgba::new(1.399, 0.532, 0.2, 0.4)),
+                        trail_color: Some(
+                            LinearRgba::new(1.399, 0.532, 0.2, 0.4)
+                        ),
                         trail_length: 300,
                         ..default()
                     },
@@ -48,7 +50,9 @@ fn main() {
                         position: spawn_points[1],
                         velocity: DVec3::new(0., 0., 0.),
                         color: Some(LinearRgba::rgb(20.0, 130.99, 50.32)),
-                        trail_color: Some(LinearRgba::new(0.2, 1.399, 0.532, 0.4)),
+                        trail_color: Some(
+                            LinearRgba::new(0.2, 1.399, 0.532, 0.4)
+                        ),
                         trail_length: 300,
                         ..default()
                     },
@@ -58,7 +62,9 @@ fn main() {
                         position: spawn_points[2],
                         velocity: DVec3::new(0., 0., 0.),
                         color: Some(LinearRgba::rgb(50.32, 20.0, 130.99)),
-                        trail_color: Some(LinearRgba::new(0.532, 0.2, 1.399, 0.4)),
+                        trail_color: Some(
+                            LinearRgba::new(0.532, 0.2, 1.399, 0.4)
+                        ),
                         trail_length: 300,
                         ..default()
                     },
@@ -70,8 +76,9 @@ fn main() {
         .run();
 }
 
-fn center_coorinates(triangle_verts: [DVec3; 3]) -> [DVec3; 3] {
-    let center = triangle_verts.iter().fold(DVec3::ZERO, |acc, v| acc + *v) / 3.0;
+fn center_coordinates(triangle_verts: [DVec3; 3]) -> [DVec3; 3] {
+    let center = triangle_verts.iter()
+        .fold(DVec3::ZERO, |acc, v| acc + *v) / 3.0;
     triangle_verts.map(|v| v - center)
 }
 
@@ -85,7 +92,8 @@ fn setup(
                 ..default()
             },
             tonemapping: Tonemapping::TonyMcMapface,
-            transform: Transform::from_xyz(0.0, 0.0, 5.).looking_at(Vec3::default(), Vec3::Y),
+            transform: Transform::from_xyz(0.0, 0.0, 5.)
+                .looking_at(Vec3::default(), Vec3::Y),
             projection: OrthographicProjection {
                 scale: 0.08,
                 ..default()
